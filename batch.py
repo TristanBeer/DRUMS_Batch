@@ -43,7 +43,7 @@ if __name__ == "__main__":
     composite_folder, comp_size = "./COMPOSITE_IMAGES", (640, 800)
 
     global background_image
-    background_image = "./background1.jpg"
+    background_image = "W:/SCHOOL DAY/Backgrounds for green screen/background1.jpg"
 
 
     if not os.path.isdir(temp_folder):
@@ -59,11 +59,15 @@ if __name__ == "__main__":
         small_image = img.resize(thum_size)
         normal_image = img.resize(ver_size)
         large_image = img.resize(comp_size)
-        
+
         small_image.save(os.path.join(thumbnails_folder, os.path.basename(image)), format="JPEG", quality=95)
         normal_image.save(os.path.join(verified_folder, os.path.basename(image)), format="JPEG", quality=95)
         large_image.save(os.path.join(verified_large_folder, os.path.basename(image)), format="JPEG", quality=95)
-        large_image.save(os.path.join(composite_folder, os.path.basename(image)), format="JPEG", quality=95)
+        
+        if image.lower().endswith("_1.jpg"):
+            img_name = os.path.basename(os.path.splitext(image)[0])
+            img_name = img_name[:-2]
+            large_image.save(os.path.join(composite_folder, img_name+".jpg"), format="JPEG", quality=95)
 
     for image in get_png_images(source_folder):
         shutil.move(image, os.path.join(destination_folder, os.path.basename(image)))
