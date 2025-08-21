@@ -1,5 +1,6 @@
 from PIL import Image
 import os
+import shutil
 from multiprocessing import Pool
 import time
 
@@ -34,6 +35,7 @@ def compose_png_image(image):
 
 if __name__ == "__main__":
     source_folder = "./MISC_2"
+    destination_folder = "./MISC_1"
     temp_folder = "./MISC_2/temp"
     verified_folder, ver_size = "./VERIFIED_IMAGES", (320, 400)
     verified_large_folder, verl_size = "./VERIFIED_IMAGES_LARGE", (640, 800)
@@ -63,5 +65,7 @@ if __name__ == "__main__":
         large_image.save(os.path.join(verified_large_folder, os.path.basename(image)), format="JPEG", quality=95)
         large_image.save(os.path.join(composite_folder, os.path.basename(image)), format="JPEG", quality=95)
 
+    for image in get_png_images(source_folder):
+        shutil.move(image, os.path.join(destination_folder, os.path.basename(image)))
 
-
+    shutil.rmtree(temp_folder)
