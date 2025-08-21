@@ -2,7 +2,7 @@
 
 ## This script does everything that the internal DRUMS batch option does, but faster.  
 
-It sources PNG images from MISC_2 of the school and does the following actions:  
+The script assumes its being run for the root of the school folder, sources PNG images from MISC_2 of the school, then does the following actions:  
   
 -- Creates a temp folder in MISC_2 for working images  
   
@@ -22,4 +22,4 @@ It sources PNG images from MISC_2 of the school and does the following actions:
   
 -- Deletes temp folder from MISC_2  
   
-Multiprocessing has been implemented for composing the initial images, this increases speed by ~6x, currently set to 12 processes, your may need to turn this down if your CPU has less then 12 threads.
+Multiprocessing has been implemented for composing the initial images. Currently this is set to 12 processes, your may need to turn this down if your CPU has less then 12 threads.
